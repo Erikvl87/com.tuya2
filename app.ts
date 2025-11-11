@@ -1,6 +1,5 @@
 import { OAuth2App } from 'homey-oauth2app';
 import NodeCache from 'node-cache';
-import TuyaOAuth2Client from './lib/TuyaOAuth2Client';
 import * as TuyaOAuth2Util from './lib/TuyaOAuth2Util';
 
 import TuyaOAuth2Device from './lib/TuyaOAuth2Device';

@@ -69,7 +69,7 @@ export default class TuyaOAuth2Driver extends OAuth2Driver<TuyaHasClient> {
 
     session.setHandler('showView', async view => {
       // Skip authentication if we already have a session
-      if (view === 'usercode' && OAuth2SessionId !== '$new') {
+      if (view === 'usercode' && OAuth2SessionId !== '$new' && client.getToken() !== null) {
         session.showView('list_devices').catch(this.error);
       }
     });

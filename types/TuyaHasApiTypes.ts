@@ -1,10 +1,19 @@
-export type TuyaQrCodeResponse = {
+export type TuyaHasResponse<Result> = {
   success: boolean;
   tid: string;
   t: number;
   msg?: string;
   code?: string;
-  result?: { qrcode: string };
+  result?: Result;
+};
+
+export type TuyaQrCodeResponse = TuyaHasResponse<{ qrcode: string }>;
+
+export type TuyaTokenRefreshResponse = {
+  accessToken: string;
+  expireTime: number;
+  refreshToken: string;
+  uid: string;
 };
 
 export type TuyaHasHome = {

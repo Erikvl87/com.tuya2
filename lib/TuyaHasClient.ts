@@ -15,12 +15,17 @@ import {
 } from '../types/TuyaApiTypes';
 import * as TuyaOAuth2Util from './TuyaOAuth2Util';
 import TuyaHasToken from './TuyaHasToken';
-import { TuyaHasHome, TuyaMqttConfigResponse, TuyaMqttMessage } from '../types/TuyaHasApiTypes';
+import {
+  TuyaHasHome,
+  TuyaHasResponse,
+  TuyaHasStatusResponse,
+  TuyaMqttConfigResponse,
+  TuyaMqttMessage,
+  TuyaTokenRefreshResponse,
+} from '../types/TuyaHasApiTypes';
 import crypto from 'crypto';
 import TuyaOAuth2Error from './TuyaOAuth2Error';
 import { DeviceRegistration } from '../types/TuyaTypes';
-import { Response } from 'node-fetch';
-import * as TuyaOAuth2Constants from './TuyaOAuth2Constants';
 import mqtt from 'mqtt';
 
 type OAuth2SessionInformation = { id: string; title: string };
@@ -54,28 +59,29 @@ export default class TuyaHasClient extends OAuth2Client<TuyaHasToken> {
 
   async onInit(): Promise<void> {
     this.resolveReadyPromise();
-    this.connectToMqtt().catch(error => this.error(error));
   }
 
   // Sign the request
-  async _executeRequest(
+  async _executeRequest<T>(
     {
       method,
       path,
       json,
       query = {},
       headers = {},
+      isTokenRefresh = false,
     }: {
       method: string;
       path: string;
-      json: object;
-      query: object;
-      headers: object;
+      json?: object;
+      query?: object;
+      headers?: object;
+      isTokenRefresh?: boolean;
     },
     didRefreshToken = false,
-  ): Promise<void> {
+  ): Promise<T> {
     await this.readyPromise;
-    if (this._refreshingToken) {
+    if (!isTokenRefresh) {
       await this._refreshingToken;
     }
 
@@ -125,25 +131,56 @@ export default class TuyaHasClient extends OAuth2Client<TuyaHasToken> {
     };
 
     const response = await fetch(requestUrl.toString(), requestOptions);
-    const responseBodyJson = await response.json();
+    const responseBodyJson = (await response.json()) as TuyaHasResponse<string>;
 
-    if (responseBodyJson.success === false) {
-      // TODO: Check if we should refresh the token
-      if (responseBodyJson.msg === 'TODO_access_token_expired') {
+    if (!responseBodyJson.success) {
+      // "sign invalid" means our tokens are expired
+      // code 1010 means the refresh token is also expired?
+      if (responseBodyJson.code === '-9999999') {
         if (didRefreshToken) {
-          throw new TuyaOAuth2Error('Access token expired, even after refresh', response.status, responseBodyJson.code);
+          throw new TuyaOAuth2Error('Access token expired, even after refresh');
         }
 
         await this.refreshToken();
         return this._executeRequest({ method, path, json, query, headers }, true);
+      } else if (responseBodyJson.code === '1010') {
+        throw new TuyaOAuth2Error('Refresh token expired');
       }
       throw new Error(`[${responseBodyJson.code}] ${responseBodyJson.msg}`);
     }
 
-    const responseBodyDecrypted = TuyaOAuth2Util.aesGcmDecrypt(responseBodyJson.result, secret);
-    const responseBodyDecryptedJson = JSON.parse(responseBodyDecrypted);
+    if (responseBodyJson.result === undefined) {
+      return undefined as unknown as T;
+    }
 
-    return responseBodyDecryptedJson;
+    const responseBodyDecrypted = TuyaOAuth2Util.aesGcmDecrypt(responseBodyJson.result, secret);
+    return JSON.parse(responseBodyDecrypted);
+  }
+
+  async refreshToken(): Promise<void> {
+    if (this._refreshingToken) {
+      return await this._refreshingToken;
+    }
+    this.log('Refreshing token...');
+    const token = this.getToken();
+    this._refreshingToken = this._executeRequest<TuyaTokenRefreshResponse>({
+      method: 'GET',
+      path: `/v1.0/m/token/${token.refresh_token}`,
+      isTokenRefresh: true,
+    })
+      .then(res => {
+        const newToken = new TuyaHasToken({
+          ...token.toJSON(),
+          access_token: res.accessToken,
+          refresh_token: res.refreshToken,
+        });
+        this.setToken({ token: newToken });
+        this.log('Refreshed token:', newToken);
+      })
+      .finally(() => {
+        this._refreshingToken = null;
+      });
+    return this._refreshingToken;
   }
 
   /*
