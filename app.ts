@@ -4,12 +4,7 @@ import * as TuyaOAuth2Util from './lib/TuyaOAuth2Util';
 
 import TuyaOAuth2Device from './lib/TuyaOAuth2Device';
 import sourceMapSupport from 'source-map-support';
-import type {
-  TuyaDeviceDataPoint,
-  TuyaDeviceDataPointResponse,
-  TuyaScene,
-  TuyaStatusResponse,
-} from './types/TuyaApiTypes';
+import type { TuyaDeviceDataPoint, TuyaDeviceDataPointResponse, TuyaStatusResponse } from './types/TuyaApiTypes';
 import { type ArgumentAutocompleteResults } from 'homey/lib/FlowCard';
 import TuyaHasClient from './lib/TuyaHasClient';
 

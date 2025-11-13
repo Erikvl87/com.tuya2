@@ -7,10 +7,7 @@ import {
   type TuyaDeviceDataPointResponse,
   TuyaDeviceResponse,
   TuyaDeviceSpecificationResponse,
-  TuyaHome,
-  TuyaScenesResponse,
   TuyaStatusResponse,
-  TuyaUserInfo,
   TuyaWebRTC,
 } from '../types/TuyaApiTypes';
 import * as TuyaOAuth2Util from './TuyaOAuth2Util';
@@ -203,31 +200,8 @@ export default class TuyaHasClient extends OAuth2Client<TuyaHasToken> {
     });
   }
 
-  async getScenesHA({ homeId }: { homeId: string }): Promise<TuyaScenesResponse> {
-    return this.get({
-      path: `/v1.0/m/scene/ha/home/scenes`,
-      query: { homeId },
-    });
-  }
-
-  async getHomes(): Promise<TuyaHome[]> {
-    const response = await this.getHasHomes();
-    return response.map((item: TuyaHasHome) => ({
-      geo_name: item.geoName,
-      home_id: item.id,
-      lat: 0,
-      lon: 0,
-      name: item.name,
-      role: '',
-    }));
-  }
-
   async getHasHomes(): Promise<TuyaHasHome[]> {
     return this._get(`/v1.0/m/life/users/homes`);
-  }
-
-  async getUserInfo(): Promise<TuyaUserInfo> {
-    throw new Error('Not implemented');
   }
 
   async getDevices(): Promise<TuyaDeviceResponse[]> {

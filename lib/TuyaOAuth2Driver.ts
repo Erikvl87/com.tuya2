@@ -10,7 +10,7 @@ import { sendSetting } from './TuyaOAuth2Util';
 import PairSession from 'homey/lib/PairSession';
 import { URL } from 'url';
 import { Response } from 'node-fetch';
-import { TuyaHasStatus, type TuyaQrCodeResponse } from '../types/TuyaHasApiTypes';
+import { type TuyaQrCodeResponse } from '../types/TuyaHasApiTypes';
 import TuyaHasToken from './TuyaHasToken';
 import TuyaHasClient from './TuyaHasClient';
 import QRCode from 'qrcode';
