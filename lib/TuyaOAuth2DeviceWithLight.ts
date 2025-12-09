@@ -83,10 +83,10 @@ export default class TuyaOAuth2DeviceWithLight extends TuyaOAuth2Device {
 
   async onCapabilitiesLight(newValues: Record<string, unknown>): Promise<void> {
     let light_mode = newValues['light_mode'] ?? this.getCapabilityValue('light_mode');
-    const light_hue = newValues['light_hue'] ?? this.getCapabilityValue('light_hue');
-    const light_saturation = newValues['light_saturation'] ?? this.getCapabilityValue('light_saturation');
-    const light_temperature = newValues['light_temperature'] ?? this.getCapabilityValue('light_temperature');
-    const light_dim = newValues[this.LIGHT_DIM_CAPABILITY] ?? this.getCapabilityValue(this.LIGHT_DIM_CAPABILITY);
+    const light_hue = newValues['light_hue'] ?? this.getCapabilityValue('light_hue') ?? 1.0;
+    const light_saturation = newValues['light_saturation'] ?? this.getCapabilityValue('light_saturation') ?? 1.0;
+    const light_temperature = newValues['light_temperature'] ?? this.getCapabilityValue('light_temperature') ?? 1.0;
+    const light_dim = newValues[this.LIGHT_DIM_CAPABILITY] ?? this.getCapabilityValue(this.LIGHT_DIM_CAPABILITY) ?? 1.0;
 
     const commands: TuyaCommand[] = [];
 
