@@ -306,6 +306,7 @@
     "email": "homey-tuya@drenso.nl"
   },
   "homeyCommunityTopicId": 146735,
+  "source": "https://github.com/Drenso/com.tuya2",
   "support": "mailto:homey-tuya@drenso.nl",
   "flow": {
     "triggers": [
