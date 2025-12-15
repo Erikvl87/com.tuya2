@@ -224,7 +224,7 @@ export default class TuyaOAuth2Device extends OAuth2Device<TuyaHaClient> {
         });
       })
       .catch(err => {
-        this.error(`Error Syncing: ${err.message}`);
+        this.error(`Error Syncing: ${err.message}; ${err.stack}`);
         this.setUnavailable(err).catch(this.error);
       });
   }
