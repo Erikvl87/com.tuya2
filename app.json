@@ -439,7 +439,7 @@
             "name": "device",
             "type": "device",
             "filter": {
-              "driver_id": "button|camera|circuit_breaker|dimmer|doorbell|fan|garage_door|heater|irrigator|light|other|sensor_climate|sensor_contact|sensor_human|sensor_motion|sensor_smoke|siren|socket|thermostat|window_coverings"
+              "driver_id": "button|camera|circuit_breaker|dehumidifier|dimmer|doorbell|fan|garage_door|heater|humidifier|irrigator|light|other|sensor_climate|sensor_co2|sensor_contact|sensor_gas|sensor_human|sensor_motion|sensor_pm2.5|sensor_smoke|sensor_vibration|siren|socket|thermostat|window_coverings"
             },
             "title": {
               "en": "Device"
@@ -480,7 +480,7 @@
             "name": "device",
             "type": "device",
             "filter": {
-              "driver_id": "button|camera|circuit_breaker|dimmer|doorbell|fan|garage_door|heater|irrigator|light|other|sensor_climate|sensor_contact|sensor_human|sensor_motion|sensor_smoke|siren|socket|thermostat|window_coverings"
+              "driver_id": "button|camera|circuit_breaker|dehumidifier|dimmer|doorbell|fan|garage_door|heater|humidifier|irrigator|light|other|sensor_climate|sensor_co2|sensor_contact|sensor_gas|sensor_human|sensor_motion|sensor_pm2.5|sensor_smoke|sensor_vibration|siren|socket|thermostat|window_coverings"
             },
             "title": {
               "en": "Device"
@@ -521,7 +521,7 @@
             "name": "device",
             "type": "device",
             "filter": {
-              "driver_id": "button|camera|circuit_breaker|dimmer|doorbell|fan|garage_door|heater|irrigator|light|other|sensor_climate|sensor_contact|sensor_human|sensor_motion|sensor_smoke|siren|socket|thermostat|window_coverings"
+              "driver_id": "button|camera|circuit_breaker|dehumidifier|dimmer|doorbell|fan|garage_door|heater|humidifier|irrigator|light|other|sensor_climate|sensor_co2|sensor_contact|sensor_gas|sensor_human|sensor_motion|sensor_pm2.5|sensor_smoke|sensor_vibration|siren|socket|thermostat|window_coverings"
             },
             "title": {
               "en": "Device"
@@ -562,7 +562,7 @@
             "name": "device",
             "type": "device",
             "filter": {
-              "driver_id": "button|camera|circuit_breaker|dimmer|doorbell|fan|garage_door|heater|irrigator|light|other|sensor_climate|sensor_contact|sensor_human|sensor_motion|sensor_smoke|siren|socket|thermostat|window_coverings"
+              "driver_id": "button|camera|circuit_breaker|dehumidifier|dimmer|doorbell|fan|garage_door|heater|humidifier|irrigator|light|other|sensor_climate|sensor_co2|sensor_contact|sensor_gas|sensor_human|sensor_motion|sensor_pm2.5|sensor_smoke|sensor_vibration|siren|socket|thermostat|window_coverings"
             },
             "title": {
               "en": "Device"
@@ -1187,6 +1187,28 @@
         ]
       },
       {
+        "id": "sensor_gas_measure_gas_changed",
+        "title": {
+          "en": "The gas-level changed"
+        },
+        "tokens": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Gas"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=sensor_gas&capabilities=measure_gas"
+          }
+        ]
+      },
+      {
         "id": "socket_sub_switch_turned_off",
         "highlight": true,
         "title": {
@@ -1276,6 +1298,44 @@
     "actions": [
       {
         "title": {
+          "en": "Turn alarm off"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": {
+              "driver_id": "sensor_co2|sensor_gas|sensor_pm2.5|sensor_smoke",
+              "capabilities": "onoff.alarm_switch"
+            },
+            "title": {
+              "en": "Device"
+            }
+          }
+        ],
+        "id": "alarm_switch_off"
+      },
+      {
+        "title": {
+          "en": "Turn alarm on"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": {
+              "driver_id": "sensor_co2|sensor_gas|sensor_pm2.5|sensor_smoke",
+              "capabilities": "onoff.alarm_switch"
+            },
+            "title": {
+              "en": "Device"
+            }
+          }
+        ],
+        "id": "alarm_switch_on"
+      },
+      {
+        "title": {
           "en": "Send a Tuya Command (Boolean)"
         },
         "titleFormatted": {
@@ -1289,7 +1349,7 @@
             "name": "device",
             "type": "device",
             "filter": {
-              "driver_id": "button|camera|circuit_breaker|dimmer|doorbell|fan|garage_door|heater|irrigator|light|other|sensor_climate|sensor_contact|sensor_human|sensor_motion|sensor_smoke|siren|socket|thermostat|window_coverings"
+              "driver_id": "button|camera|circuit_breaker|dehumidifier|dimmer|doorbell|fan|garage_door|heater|humidifier|irrigator|light|other|sensor_climate|sensor_co2|sensor_contact|sensor_gas|sensor_human|sensor_motion|sensor_pm2.5|sensor_smoke|sensor_vibration|siren|socket|thermostat|window_coverings"
             },
             "title": {
               "en": "Device"
@@ -1327,7 +1387,7 @@
             "name": "device",
             "type": "device",
             "filter": {
-              "driver_id": "button|camera|circuit_breaker|dimmer|doorbell|fan|garage_door|heater|irrigator|light|other|sensor_climate|sensor_contact|sensor_human|sensor_motion|sensor_smoke|siren|socket|thermostat|window_coverings"
+              "driver_id": "button|camera|circuit_breaker|dehumidifier|dimmer|doorbell|fan|garage_door|heater|humidifier|irrigator|light|other|sensor_climate|sensor_co2|sensor_contact|sensor_gas|sensor_human|sensor_motion|sensor_pm2.5|sensor_smoke|sensor_vibration|siren|socket|thermostat|window_coverings"
             },
             "title": {
               "en": "Device"
@@ -1365,7 +1425,7 @@
             "name": "device",
             "type": "device",
             "filter": {
-              "driver_id": "button|camera|circuit_breaker|dimmer|doorbell|fan|garage_door|heater|irrigator|light|other|sensor_climate|sensor_contact|sensor_human|sensor_motion|sensor_smoke|siren|socket|thermostat|window_coverings"
+              "driver_id": "button|camera|circuit_breaker|dehumidifier|dimmer|doorbell|fan|garage_door|heater|humidifier|irrigator|light|other|sensor_climate|sensor_co2|sensor_contact|sensor_gas|sensor_human|sensor_motion|sensor_pm2.5|sensor_smoke|sensor_vibration|siren|socket|thermostat|window_coverings"
             },
             "title": {
               "en": "Device"
@@ -1403,7 +1463,7 @@
             "name": "device",
             "type": "device",
             "filter": {
-              "driver_id": "button|camera|circuit_breaker|dimmer|doorbell|fan|garage_door|heater|irrigator|light|other|sensor_climate|sensor_contact|sensor_human|sensor_motion|sensor_smoke|siren|socket|thermostat|window_coverings"
+              "driver_id": "button|camera|circuit_breaker|dehumidifier|dimmer|doorbell|fan|garage_door|heater|humidifier|irrigator|light|other|sensor_climate|sensor_co2|sensor_contact|sensor_gas|sensor_human|sensor_motion|sensor_pm2.5|sensor_smoke|sensor_vibration|siren|socket|thermostat|window_coverings"
             },
             "title": {
               "en": "Device"
@@ -1425,6 +1485,210 @@
           }
         ],
         "id": "send_command_string"
+      },
+      {
+        "title": {
+          "en": "Set alarm brightness"
+        },
+        "titleFormatted": {
+          "en": "Set alarm brightness to [[value]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": {
+              "driver_id": "sensor_co2|sensor_gas|sensor_pm2.5|sensor_smoke",
+              "capabilities": "hidden.alarm_bright"
+            },
+            "title": {
+              "en": "Device"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "min": 0,
+            "step": 1,
+            "max": 100,
+            "title": {
+              "en": "Value"
+            },
+            "placeholder": {
+              "en": "%"
+            }
+          }
+        ],
+        "id": "set_sensor_alarm_bright"
+      },
+      {
+        "title": {
+          "en": "Set alarm tone"
+        },
+        "titleFormatted": {
+          "en": "Set alarm tone to [[value]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": {
+              "driver_id": "sensor_co2|sensor_gas|sensor_pm2.5|sensor_smoke",
+              "capabilities": "hidden.alarm_ringtone"
+            },
+            "title": {
+              "en": "Device"
+            }
+          },
+          {
+            "name": "value",
+            "type": "dropdown",
+            "title": {
+              "en": "Value"
+            },
+            "values": [
+              {
+                "id": "1",
+                "title": "1"
+              },
+              {
+                "id": "2",
+                "title": "2"
+              },
+              {
+                "id": "3",
+                "title": "3"
+              },
+              {
+                "id": "4",
+                "title": "4"
+              },
+              {
+                "id": "5",
+                "title": "5"
+              }
+            ]
+          }
+        ],
+        "id": "set_sensor_alarm_ringtone"
+      },
+      {
+        "title": {
+          "en": "Set alarm duration"
+        },
+        "titleFormatted": {
+          "en": "Set alarm duration to [[value]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": {
+              "driver_id": "sensor_co2|sensor_gas|sensor_pm2.5|sensor_smoke",
+              "capabilities": "hidden.alarm_time"
+            },
+            "title": {
+              "en": "Device"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "min": 1,
+            "step": 1,
+            "title": {
+              "en": "Value"
+            },
+            "placeholder": {
+              "en": "In seconds"
+            }
+          }
+        ],
+        "id": "set_sensor_alarm_time"
+      },
+      {
+        "title": {
+          "en": "Set alarm volume"
+        },
+        "titleFormatted": {
+          "en": "Set alarm volume to [[value]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": {
+              "driver_id": "sensor_co2|sensor_gas|sensor_pm2.5|sensor_smoke",
+              "capabilities": "hidden.alarm_volume"
+            },
+            "title": {
+              "en": "Device"
+            }
+          },
+          {
+            "name": "value",
+            "type": "dropdown",
+            "title": {
+              "en": "Value"
+            },
+            "values": [
+              {
+                "id": "low",
+                "title": {
+                  "en": "Low"
+                }
+              },
+              {
+                "id": "middle",
+                "title": {
+                  "en": "Middle"
+                }
+              },
+              {
+                "id": "high",
+                "title": {
+                  "en": "High"
+                }
+              },
+              {
+                "id": "mute",
+                "title": {
+                  "en": "Mute"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "set_sensor_alarm_volume"
+      },
+      {
+        "title": {
+          "en": "Set mute alarm"
+        },
+        "titleFormatted": {
+          "en": "Set mute alarm to [[value]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": {
+              "driver_id": "sensor_co2|sensor_gas|sensor_pm2.5|sensor_smoke",
+              "capabilities": "hidden.muffling"
+            },
+            "title": {
+              "en": "Device"
+            }
+          },
+          {
+            "name": "value",
+            "type": "checkbox",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ],
+        "id": "set_sensor_muffling"
       },
       {
         "title": {
@@ -1668,6 +1932,167 @@
           {
             "name": "value",
             "type": "checkbox",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dehumidifier_child_lock",
+        "title": {
+          "en": "Set child lock"
+        },
+        "titleFormatted": {
+          "en": "Set child lock to [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dehumidifier&capabilities=child_lock"
+          },
+          {
+            "name": "value",
+            "type": "checkbox",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dehumidifier_night_mode",
+        "title": {
+          "en": "Set night mode"
+        },
+        "titleFormatted": {
+          "en": "Set night mode to [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dehumidifier&capabilities=night_mode"
+          },
+          {
+            "name": "value",
+            "type": "checkbox",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dehumidifier_frost_guard",
+        "title": {
+          "en": "Set defrost"
+        },
+        "titleFormatted": {
+          "en": "Set defrost to [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dehumidifier&capabilities=frost_guard"
+          },
+          {
+            "name": "value",
+            "type": "checkbox",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dehumidifier_fan_swing_horizontal",
+        "title": {
+          "en": "Set fan swing"
+        },
+        "titleFormatted": {
+          "en": "Set fan swing to [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dehumidifier&capabilities=fan_swing_horizontal"
+          },
+          {
+            "name": "value",
+            "type": "checkbox",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dehumidifier_enum.dehumidifier_mode",
+        "title": {
+          "en": "Set dehumidifier mode"
+        },
+        "titleFormatted": {
+          "en": "Set dehumidifier mode to [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dehumidifier&capabilities=enum.dehumidifier_mode"
+          },
+          {
+            "name": "value",
+            "type": "autocomplete",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dehumidifier_legacy_fan_speed",
+        "title": {
+          "en": "Set fan speed"
+        },
+        "titleFormatted": {
+          "en": "Set fan speed to [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dehumidifier&capabilities=legacy_fan_speed"
+          },
+          {
+            "name": "value",
+            "type": "autocomplete",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dehumidifier_enum.target_humidity",
+        "title": {
+          "en": "Set target humidity"
+        },
+        "titleFormatted": {
+          "en": "Set target humidity to [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dehumidifier&capabilities=enum.target_humidity"
+          },
+          {
+            "name": "value",
+            "type": "autocomplete",
             "title": {
               "en": "Value"
             }
@@ -2158,6 +2583,202 @@
             "title": {
               "en": "Value"
             }
+          }
+        ]
+      },
+      {
+        "id": "humidifier_onoff.spray_true",
+        "title": {
+          "en": "Turn spray on"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=humidifier&capabilities=onoff.spray"
+          }
+        ]
+      },
+      {
+        "id": "humidifier_onoff.spray_false",
+        "title": {
+          "en": "Turn spray off"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=humidifier&capabilities=onoff.spray"
+          }
+        ]
+      },
+      {
+        "id": "humidifier_onoff.light_true",
+        "title": {
+          "en": "Turn light on"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=humidifier&capabilities=onoff.light"
+          }
+        ]
+      },
+      {
+        "id": "humidifier_onoff.light_false",
+        "title": {
+          "en": "Turn light off"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=humidifier&capabilities=onoff.light"
+          }
+        ]
+      },
+      {
+        "id": "humidifier_night_mode",
+        "title": {
+          "en": "Set night mode"
+        },
+        "titleFormatted": {
+          "en": "Set night mode to [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=humidifier&capabilities=night_mode"
+          },
+          {
+            "name": "value",
+            "type": "checkbox",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "humidifier_enum.spray_mode",
+        "title": {
+          "en": "Set spray mode"
+        },
+        "titleFormatted": {
+          "en": "Set spray mode to [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=humidifier&capabilities=enum.spray_mode"
+          },
+          {
+            "name": "value",
+            "type": "autocomplete",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "humidifier_enum.spray_level",
+        "title": {
+          "en": "Set spray level"
+        },
+        "titleFormatted": {
+          "en": "Set spray level to [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=humidifier&capabilities=enum.spraylevel"
+          },
+          {
+            "name": "value",
+            "type": "autocomplete",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "infrared_remote_press",
+        "title": {
+          "en": "Press button"
+        },
+        "titleFormatted": {
+          "en": "Press [[button]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=infrared_remote"
+          },
+          {
+            "name": "button",
+            "type": "autocomplete",
+            "title": {
+              "en": "Button"
+            }
+          }
+        ]
+      },
+      {
+        "id": "infrared_remote_mute_button",
+        "title": {
+          "en": "Press mute button"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=infrared_remote&capabilities=mute_button"
+          }
+        ]
+      },
+      {
+        "id": "infrared_remote_power_button",
+        "title": {
+          "en": "Press power button"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=infrared_remote&capabilities=power_button"
+          }
+        ]
+      },
+      {
+        "id": "infrared_remote_on_button",
+        "title": {
+          "en": "Press on button"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=infrared_remote&capabilities=on_button"
+          }
+        ]
+      },
+      {
+        "id": "infrared_remote_off_button",
+        "title": {
+          "en": "Press off button"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=infrared_remote&capabilities=off_button"
           }
         ]
       },
@@ -2723,6 +3344,32 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=fan&capabilities=onoff.light"
+          }
+        ]
+      },
+      {
+        "id": "humidifier_onoff.spray_is_true",
+        "title": {
+          "en": "Spray is !{{on|off}}"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=humidifier&capabilities=onoff.spray"
+          }
+        ]
+      },
+      {
+        "id": "humidifier_onoff.light_is_true",
+        "title": {
+          "en": "Light is !{{on|off}}"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=humidifier&capabilities=onoff.light"
           }
         ]
       },
@@ -3360,6 +4007,274 @@
           },
           "value": "1",
           "type": "dropdown",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "1"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "1/10"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "1/100"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "1/1000"
+              }
+            }
+          ]
+        },
+        {
+          "id": "deviceSpecification",
+          "type": "label",
+          "label": {
+            "en": "Device Specification"
+          },
+          "hint": {
+            "en": "The Tuya specification of this device"
+          },
+          "value": "<not available>"
+        }
+      ]
+    },
+    {
+      "capabilities": [
+        "onoff",
+        "target_humidity",
+        "measure_humidity"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/dehumidifier/assets/images/small.png",
+        "large": "/drivers/dehumidifier/assets/images/large.png",
+        "xlarge": "/drivers/dehumidifier/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "welcome",
+          "navigation": {
+            "next": "usercode"
+          }
+        },
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        }
+      ],
+      "class": "dehumidifier",
+      "name": {
+        "en": "Dehumidifier",
+        "nl": "Luchtontvochtiger"
+      },
+      "capabilitiesOptions": {
+        "legacy_fan_speed": {
+          "values": [
+            {
+              "id": "high",
+              "title": {
+                "en": "High"
+              }
+            },
+            {
+              "id": "mid",
+              "title": {
+                "en": "Mid"
+              }
+            },
+            {
+              "id": "low",
+              "title": {
+                "en": "Low"
+              }
+            }
+          ]
+        },
+        "fan_swing_horizontal": {
+          "title": {
+            "en": "Fan Swing"
+          }
+        },
+        "frost_guard": {
+          "title": {
+            "en": "Defrost"
+          }
+        },
+        "enum.dehumidifier_mode": {
+          "title": {
+            "en": "Dehumidifier mode"
+          },
+          "values": [
+            {
+              "id": "low",
+              "title": {
+                "en": "Low"
+              }
+            },
+            {
+              "id": "mid",
+              "title": {
+                "en": "Middle"
+              }
+            },
+            {
+              "id": "high",
+              "title": {
+                "en": "High"
+              }
+            }
+          ]
+        },
+        "enum.target_humidity": {
+          "title": {
+            "en": "Target humidity"
+          },
+          "values": [
+            {
+              "id": "10",
+              "title": "10%"
+            },
+            {
+              "id": "20",
+              "title": "20%"
+            },
+            {
+              "id": "30",
+              "title": "30%"
+            },
+            {
+              "id": "40",
+              "title": "40%"
+            },
+            {
+              "id": "50",
+              "title": "50%"
+            }
+          ]
+        }
+      },
+      "id": "dehumidifier",
+      "settings": [
+        {
+          "id": "measure_humidity_scaling",
+          "label": {
+            "en": "Measured Humidity Scale"
+          },
+          "hint": {
+            "en": "By how much the humidity measured by the device is scaled."
+          },
+          "type": "dropdown",
+          "value": "0",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "1"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "1/10"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "1/100"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "1/1000"
+              }
+            }
+          ]
+        },
+        {
+          "id": "measure_temperature_scaling",
+          "label": {
+            "en": "Measured Temperature Scale"
+          },
+          "hint": {
+            "en": "By how much the temperature measured by the device is scaled."
+          },
+          "type": "dropdown",
+          "value": "0",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "1"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "1/10"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "1/100"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "1/1000"
+              }
+            }
+          ]
+        },
+        {
+          "id": "measure_pm25_scaling",
+          "label": {
+            "en": "Measured PM2.5 Scale"
+          },
+          "hint": {
+            "en": "By how much the PM2.5 measured by the device is scaled."
+          },
+          "type": "dropdown",
+          "value": "0",
           "values": [
             {
               "id": "0",
@@ -4297,6 +5212,265 @@
     },
     {
       "capabilities": [
+        "onoff",
+        "measure_humidity",
+        "target_humidity"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/humidifier/assets/images/small.png",
+        "large": "/drivers/humidifier/assets/images/large.png",
+        "xlarge": "/drivers/humidifier/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "welcome",
+          "navigation": {
+            "next": "usercode"
+          }
+        },
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        }
+      ],
+      "class": "humidifier",
+      "name": {
+        "en": "Humidifier",
+        "nl": "Luchtbevochtiger"
+      },
+      "capabilitiesOptions": {
+        "onoff.spray": {
+          "title": {
+            "en": "Spray"
+          }
+        },
+        "onoff.light": {
+          "title": {
+            "en": "Light"
+          }
+        },
+        "enum.fog_mode": {
+          "title": {
+            "en": "Fog Mode"
+          },
+          "values": [
+            {
+              "id": "large",
+              "title": "Large"
+            },
+            {
+              "id": "middle",
+              "title": "Middle"
+            },
+            {
+              "id": "small",
+              "title": "Small"
+            },
+            {
+              "id": "interval",
+              "title": "Interval"
+            },
+            {
+              "id": "continuous",
+              "title": "Continuous"
+            }
+          ]
+        },
+        "enum.spray_mode": {
+          "title": {
+            "en": "Spray Mode"
+          },
+          "values": [
+            {
+              "id": "auto",
+              "title": "Auto"
+            },
+            {
+              "id": "health",
+              "title": "Health"
+            },
+            {
+              "id": "baby",
+              "title": "Baby"
+            },
+            {
+              "id": "sleep",
+              "title": "Sleep"
+            },
+            {
+              "id": "humidity",
+              "title": "Humidity"
+            },
+            {
+              "id": "work",
+              "title": "Work"
+            }
+          ]
+        },
+        "enum.spray_level": {
+          "title": {
+            "en": "Spray Level"
+          },
+          "values": [
+            {
+              "id": "level_1",
+              "title": "1"
+            },
+            {
+              "id": "level_2",
+              "title": "2"
+            },
+            {
+              "id": "level_3",
+              "title": "3"
+            },
+            {
+              "id": "level_4",
+              "title": "4"
+            },
+            {
+              "id": "level_5",
+              "title": "5"
+            },
+            {
+              "id": "level_6",
+              "title": "6"
+            },
+            {
+              "id": "level_7",
+              "title": "7"
+            },
+            {
+              "id": "level_8",
+              "title": "8"
+            },
+            {
+              "id": "level_9",
+              "title": "9"
+            },
+            {
+              "id": "level_10",
+              "title": "10"
+            }
+          ]
+        }
+      },
+      "id": "humidifier",
+      "settings": [
+        {
+          "id": "deviceSpecification",
+          "type": "label",
+          "label": {
+            "en": "Device Specification"
+          },
+          "hint": {
+            "en": "The Tuya specification of this device"
+          },
+          "value": "<not available>"
+        }
+      ]
+    },
+    {
+      "capabilities": [
+        "on_button",
+        "off_button",
+        "mute_button"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/infrared_remote/assets/images/small.png",
+        "large": "/drivers/infrared_remote/assets/images/large.png",
+        "xlarge": "/drivers/infrared_remote/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "welcome",
+          "navigation": {
+            "next": "usercode"
+          }
+        },
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        }
+      ],
+      "class": "remote",
+      "name": {
+        "en": "Infrared Remote",
+        "nl": "Infrarood Afstandsbediening"
+      },
+      "id": "infrared_remote",
+      "settings": [
+        {
+          "id": "deviceSpecification",
+          "type": "label",
+          "label": {
+            "en": "Device Specification"
+          },
+          "hint": {
+            "en": "The Tuya specification of this device"
+          },
+          "value": "<not available>"
+        }
+      ]
+    },
+    {
+      "capabilities": [
         "measure_water",
         "meter_water",
         "rain_sensor"
@@ -5021,6 +6195,202 @@
     },
     {
       "capabilities": [
+        "alarm_co2",
+        "measure_co2"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/sensor_co2/assets/images/small.png",
+        "large": "/drivers/sensor_co2/assets/images/large.png",
+        "xlarge": "/drivers/sensor_co2/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "welcome",
+          "navigation": {
+            "next": "usercode"
+          }
+        },
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        }
+      ],
+      "class": "sensor",
+      "name": {
+        "en": "CO2 Detector",
+        "nl": "CO2 Melder"
+      },
+      "id": "sensor_co2",
+      "settings": [
+        {
+          "id": "use_alarm_timeout",
+          "type": "checkbox",
+          "hint": {
+            "en": "Turn the alarm off a set time after the start signal, even if no end signal is received."
+          },
+          "label": {
+            "en": "Use Alarm Timeout"
+          },
+          "value": false
+        },
+        {
+          "id": "alarm_timeout",
+          "type": "number",
+          "label": {
+            "en": "Alarm Timeout"
+          },
+          "value": 10,
+          "min": 1,
+          "units": {
+            "en": "seconds"
+          }
+        },
+        {
+          "id": "sensor_alarm_group",
+          "type": "group",
+          "label": {
+            "en": "NOTE: Some settings are not supported by every device."
+          },
+          "children": [
+            {
+              "id": "muffling",
+              "type": "checkbox",
+              "label": {
+                "en": "Mute Alarm"
+              }
+            },
+            {
+              "id": "alarm_volume",
+              "type": "dropdown",
+              "label": {
+                "en": "Alarm Volume"
+              },
+              "values": [
+                {
+                  "id": "low",
+                  "label": {
+                    "en": "Low"
+                  }
+                },
+                {
+                  "id": "middle",
+                  "label": {
+                    "en": "Middle"
+                  }
+                },
+                {
+                  "id": "high",
+                  "label": {
+                    "en": "High"
+                  }
+                },
+                {
+                  "id": "mute",
+                  "label": {
+                    "en": "Mute"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "alarm_time",
+              "type": "number",
+              "label": {
+                "en": "Alarm Duration"
+              },
+              "min": 1,
+              "step": 1,
+              "value": 1,
+              "units": {
+                "en": "seconds"
+              }
+            },
+            {
+              "id": "alarm_ringtone",
+              "type": "dropdown",
+              "label": {
+                "en": "Alarm Tone"
+              },
+              "values": [
+                {
+                  "id": "1",
+                  "label": "1"
+                },
+                {
+                  "id": "2",
+                  "label": "2"
+                },
+                {
+                  "id": "3",
+                  "label": "3"
+                },
+                {
+                  "id": "4",
+                  "label": "4"
+                },
+                {
+                  "id": "5",
+                  "label": "5"
+                }
+              ]
+            },
+            {
+              "id": "alarm_bright",
+              "type": "number",
+              "label": {
+                "en": "Alarm Brightness"
+              },
+              "min": 0,
+              "step": 1,
+              "max": 100,
+              "value": 100,
+              "units": "%"
+            }
+          ]
+        },
+        {
+          "id": "deviceSpecification",
+          "type": "label",
+          "label": {
+            "en": "Device Specification"
+          },
+          "hint": {
+            "en": "The Tuya specification of this device"
+          },
+          "value": "<not available>"
+        }
+      ]
+    },
+    {
+      "capabilities": [
         "alarm_contact"
       ],
       "connectivity": [
@@ -5097,6 +6467,202 @@
           "units": {
             "en": "seconds"
           }
+        },
+        {
+          "id": "deviceSpecification",
+          "type": "label",
+          "label": {
+            "en": "Device Specification"
+          },
+          "hint": {
+            "en": "The Tuya specification of this device"
+          },
+          "value": "<not available>"
+        }
+      ]
+    },
+    {
+      "capabilities": [
+        "alarm_gas",
+        "measure_gas"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/sensor_gas/assets/images/small.png",
+        "large": "/drivers/sensor_gas/assets/images/large.png",
+        "xlarge": "/drivers/sensor_gas/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "welcome",
+          "navigation": {
+            "next": "usercode"
+          }
+        },
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        }
+      ],
+      "class": "sensor",
+      "name": {
+        "en": "Gas Detector",
+        "nl": "Gasmelder"
+      },
+      "id": "sensor_gas",
+      "settings": [
+        {
+          "id": "use_alarm_timeout",
+          "type": "checkbox",
+          "hint": {
+            "en": "Turn the alarm off a set time after the start signal, even if no end signal is received."
+          },
+          "label": {
+            "en": "Use Alarm Timeout"
+          },
+          "value": false
+        },
+        {
+          "id": "alarm_timeout",
+          "type": "number",
+          "label": {
+            "en": "Alarm Timeout"
+          },
+          "value": 10,
+          "min": 1,
+          "units": {
+            "en": "seconds"
+          }
+        },
+        {
+          "id": "sensor_alarm_group",
+          "type": "group",
+          "label": {
+            "en": "NOTE: Some settings are not supported by every device."
+          },
+          "children": [
+            {
+              "id": "muffling",
+              "type": "checkbox",
+              "label": {
+                "en": "Mute Alarm"
+              }
+            },
+            {
+              "id": "alarm_volume",
+              "type": "dropdown",
+              "label": {
+                "en": "Alarm Volume"
+              },
+              "values": [
+                {
+                  "id": "low",
+                  "label": {
+                    "en": "Low"
+                  }
+                },
+                {
+                  "id": "middle",
+                  "label": {
+                    "en": "Middle"
+                  }
+                },
+                {
+                  "id": "high",
+                  "label": {
+                    "en": "High"
+                  }
+                },
+                {
+                  "id": "mute",
+                  "label": {
+                    "en": "Mute"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "alarm_time",
+              "type": "number",
+              "label": {
+                "en": "Alarm Duration"
+              },
+              "min": 1,
+              "step": 1,
+              "value": 1,
+              "units": {
+                "en": "seconds"
+              }
+            },
+            {
+              "id": "alarm_ringtone",
+              "type": "dropdown",
+              "label": {
+                "en": "Alarm Tone"
+              },
+              "values": [
+                {
+                  "id": "1",
+                  "label": "1"
+                },
+                {
+                  "id": "2",
+                  "label": "2"
+                },
+                {
+                  "id": "3",
+                  "label": "3"
+                },
+                {
+                  "id": "4",
+                  "label": "4"
+                },
+                {
+                  "id": "5",
+                  "label": "5"
+                }
+              ]
+            },
+            {
+              "id": "alarm_bright",
+              "type": "number",
+              "label": {
+                "en": "Alarm Brightness"
+              },
+              "min": 0,
+              "step": 1,
+              "max": 100,
+              "value": 100,
+              "units": "%"
+            }
+          ]
         },
         {
           "id": "deviceSpecification",
@@ -5334,6 +6900,276 @@
     },
     {
       "capabilities": [
+        "alarm_pm25",
+        "measure_pm25"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/sensor_pm2.5/assets/images/small.png",
+        "large": "/drivers/sensor_pm2.5/assets/images/large.png",
+        "xlarge": "/drivers/sensor_pm2.5/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "welcome",
+          "navigation": {
+            "next": "usercode"
+          }
+        },
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        }
+      ],
+      "class": "sensor",
+      "name": {
+        "en": "PM2.5 Detector",
+        "nl": "PM2.5 Meter"
+      },
+      "id": "sensor_pm2.5",
+      "settings": [
+        {
+          "id": "measure_temperature_scaling",
+          "label": {
+            "en": "Measured Temperature Scale"
+          },
+          "hint": {
+            "en": "By how much the temperature measured by the device is scaled."
+          },
+          "value": "1",
+          "type": "dropdown",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "1"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "1/10"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "1/100"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "1/1000"
+              }
+            }
+          ]
+        },
+        {
+          "id": "measure_humidity_scaling",
+          "label": {
+            "en": "Measured Humidity Scale"
+          },
+          "hint": {
+            "en": "By how much the humidity measured by the device is scaled."
+          },
+          "value": "1",
+          "type": "dropdown",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "1"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "1/10"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "1/100"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "1/1000"
+              }
+            }
+          ]
+        },
+        {
+          "id": "use_alarm_timeout",
+          "type": "checkbox",
+          "hint": {
+            "en": "Turn the alarm off a set time after the start signal, even if no end signal is received."
+          },
+          "label": {
+            "en": "Use Alarm Timeout"
+          },
+          "value": false
+        },
+        {
+          "id": "alarm_timeout",
+          "type": "number",
+          "label": {
+            "en": "Alarm Timeout"
+          },
+          "value": 10,
+          "min": 1,
+          "units": {
+            "en": "seconds"
+          }
+        },
+        {
+          "id": "sensor_alarm_group",
+          "type": "group",
+          "label": {
+            "en": "NOTE: Some settings are not supported by every device."
+          },
+          "children": [
+            {
+              "id": "muffling",
+              "type": "checkbox",
+              "label": {
+                "en": "Mute Alarm"
+              }
+            },
+            {
+              "id": "alarm_volume",
+              "type": "dropdown",
+              "label": {
+                "en": "Alarm Volume"
+              },
+              "values": [
+                {
+                  "id": "low",
+                  "label": {
+                    "en": "Low"
+                  }
+                },
+                {
+                  "id": "middle",
+                  "label": {
+                    "en": "Middle"
+                  }
+                },
+                {
+                  "id": "high",
+                  "label": {
+                    "en": "High"
+                  }
+                },
+                {
+                  "id": "mute",
+                  "label": {
+                    "en": "Mute"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "alarm_time",
+              "type": "number",
+              "label": {
+                "en": "Alarm Duration"
+              },
+              "min": 1,
+              "step": 1,
+              "value": 1,
+              "units": {
+                "en": "seconds"
+              }
+            },
+            {
+              "id": "alarm_ringtone",
+              "type": "dropdown",
+              "label": {
+                "en": "Alarm Tone"
+              },
+              "values": [
+                {
+                  "id": "1",
+                  "label": "1"
+                },
+                {
+                  "id": "2",
+                  "label": "2"
+                },
+                {
+                  "id": "3",
+                  "label": "3"
+                },
+                {
+                  "id": "4",
+                  "label": "4"
+                },
+                {
+                  "id": "5",
+                  "label": "5"
+                }
+              ]
+            },
+            {
+              "id": "alarm_bright",
+              "type": "number",
+              "label": {
+                "en": "Alarm Brightness"
+              },
+              "min": 0,
+              "step": 1,
+              "max": 100,
+              "value": 100,
+              "units": "%"
+            }
+          ]
+        },
+        {
+          "id": "deviceSpecification",
+          "type": "label",
+          "label": {
+            "en": "Device Specification"
+          },
+          "hint": {
+            "en": "The Tuya specification of this device"
+          },
+          "value": "<not available>"
+        }
+      ]
+    },
+    {
+      "capabilities": [
         "alarm_smoke"
       ],
       "connectivity": [
@@ -5387,6 +7223,201 @@
         "nl": "Rookmelder"
       },
       "id": "sensor_smoke",
+      "settings": [
+        {
+          "id": "use_alarm_timeout",
+          "type": "checkbox",
+          "hint": {
+            "en": "Turn the alarm off a set time after the start signal, even if no end signal is received."
+          },
+          "label": {
+            "en": "Use Alarm Timeout"
+          },
+          "value": false
+        },
+        {
+          "id": "alarm_timeout",
+          "type": "number",
+          "label": {
+            "en": "Alarm Timeout"
+          },
+          "value": 10,
+          "min": 1,
+          "units": {
+            "en": "seconds"
+          }
+        },
+        {
+          "id": "sensor_alarm_group",
+          "type": "group",
+          "label": {
+            "en": "NOTE: Some settings are not supported by every device."
+          },
+          "children": [
+            {
+              "id": "muffling",
+              "type": "checkbox",
+              "label": {
+                "en": "Mute Alarm"
+              }
+            },
+            {
+              "id": "alarm_volume",
+              "type": "dropdown",
+              "label": {
+                "en": "Alarm Volume"
+              },
+              "values": [
+                {
+                  "id": "low",
+                  "label": {
+                    "en": "Low"
+                  }
+                },
+                {
+                  "id": "middle",
+                  "label": {
+                    "en": "Middle"
+                  }
+                },
+                {
+                  "id": "high",
+                  "label": {
+                    "en": "High"
+                  }
+                },
+                {
+                  "id": "mute",
+                  "label": {
+                    "en": "Mute"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "alarm_time",
+              "type": "number",
+              "label": {
+                "en": "Alarm Duration"
+              },
+              "min": 1,
+              "step": 1,
+              "value": 1,
+              "units": {
+                "en": "seconds"
+              }
+            },
+            {
+              "id": "alarm_ringtone",
+              "type": "dropdown",
+              "label": {
+                "en": "Alarm Tone"
+              },
+              "values": [
+                {
+                  "id": "1",
+                  "label": "1"
+                },
+                {
+                  "id": "2",
+                  "label": "2"
+                },
+                {
+                  "id": "3",
+                  "label": "3"
+                },
+                {
+                  "id": "4",
+                  "label": "4"
+                },
+                {
+                  "id": "5",
+                  "label": "5"
+                }
+              ]
+            },
+            {
+              "id": "alarm_bright",
+              "type": "number",
+              "label": {
+                "en": "Alarm Brightness"
+              },
+              "min": 0,
+              "step": 1,
+              "max": 100,
+              "value": 100,
+              "units": "%"
+            }
+          ]
+        },
+        {
+          "id": "deviceSpecification",
+          "type": "label",
+          "label": {
+            "en": "Device Specification"
+          },
+          "hint": {
+            "en": "The Tuya specification of this device"
+          },
+          "value": "<not available>"
+        }
+      ]
+    },
+    {
+      "capabilities": [
+        "alarm_vibration"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/sensor_vibration/assets/images/small.png",
+        "large": "/drivers/sensor_vibration/assets/images/large.png",
+        "xlarge": "/drivers/sensor_vibration/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "welcome",
+          "navigation": {
+            "next": "usercode"
+          }
+        },
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "usercode"
+        },
+        {
+          "id": "qrcode"
+        }
+      ],
+      "class": "sensor",
+      "name": {
+        "en": "Vibration Sensor",
+        "nl": "Trillingssensor"
+      },
+      "id": "sensor_vibration",
       "settings": [
         {
           "id": "use_alarm_timeout",
@@ -6364,6 +8395,16 @@
       "uiComponent": "button",
       "icon": "assets/capabilities/eco.svg"
     },
+    "enum": {
+      "type": "enum",
+      "title": {
+        "en": "Enum"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": []
+    },
     "fan_swing_horizontal": {
       "type": "boolean",
       "title": {
@@ -6446,6 +8487,35 @@
         }
       ]
     },
+    "measure_gas": {
+      "type": "number",
+      "title": {
+        "en": "Gas"
+      },
+      "units": {
+        "en": "ppm"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Gas in Parts-per-million (ppm)"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/capabilities/measure_gas.svg"
+    },
+    "mute_button": {
+      "type": "boolean",
+      "title": {
+        "en": "Mute"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "assets/capabilities/button_mute.svg"
+    },
     "night_mode": {
       "title": {
         "en": "Night Mode"
@@ -6455,6 +8525,26 @@
       "getable": true,
       "setable": true,
       "icon": "assets/capabilities/sleep_mode.svg"
+    },
+    "off_button": {
+      "type": "boolean",
+      "title": {
+        "en": "Off"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "assets/capabilities/button_off.svg"
+    },
+    "on_button": {
+      "type": "boolean",
+      "title": {
+        "en": "On"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "assets/capabilities/button_on.svg"
     },
     "open_window_sensor": {
       "type": "boolean",
@@ -6472,6 +8562,16 @@
         "en": "Open Window No Longer Detected"
       },
       "icon": "assets/capabilities/open_window.svg"
+    },
+    "power_button": {
+      "type": "boolean",
+      "title": {
+        "en": "Power"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "assets/capabilities/button_power.svg"
     },
     "ptz_control_horizontal": {
       "type": "enum",
