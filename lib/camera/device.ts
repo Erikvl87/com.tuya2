@@ -19,7 +19,6 @@ abstract class TuyaOAuth2DeviceWithCamera extends TuyaTimeOutAlarmDevice {
     // Video stream
     const video = await this.homey.videos.createVideoOther({});
     video.registerVideoUrlListener(async () => this.getStreamingLink('FLV'));
-    // @ts-ignore
     await this.setCameraVideo('main', 'Main Camera', video);
 
     for (const capability of this.getCapabilities()) {

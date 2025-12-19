@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@tsconfig/node16": "1.0.3",
-    "@types/homey": "npm:homey-apps-sdk-v3-types@0.3.6",
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
     "@types/node": "20.14.1",
     "@types/node-fetch": "2.6.13",
     "@types/qrcode": "1.5.6",

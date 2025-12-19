@@ -85,6 +85,8 @@ declare module 'homey-oauth2app' {
     homey: Homey;
 
     ready(): Promise<void>;
+
+    setCameraVideo(id: string, title: string, video: unknown): Promise<void>;
   }
 
   export class OAuth2Driver<T extends OAuth2Client> extends Homey.Driver {
