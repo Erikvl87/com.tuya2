@@ -2,6 +2,8 @@
 
 You have found a device that we do not support yet. That's great! You can request support, but please provide us with the information noted below.
 
+Also, please check whether support might have already been requested! See our [requested categories](./requested-categories.md).
+
 > Note: when this information is missing or incorrect we cannot process your request and we will be forced to close it!
 
 ## Device details
