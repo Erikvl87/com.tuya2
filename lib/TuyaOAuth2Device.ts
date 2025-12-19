@@ -280,7 +280,7 @@ export default class TuyaOAuth2Device extends OAuth2Device<TuyaHaClient> {
     return this.oAuth2Client.getWebRTCConfiguration({ deviceId });
   }
 
-  async getStreamingLink(type: 'RTSP' | 'HLS'): Promise<{ url: string }> {
+  async getStreamingLink(type: 'RTSP' | 'HLS' | 'FLV' | 'RTMP'): Promise<{ url: string }> {
     const { deviceId } = this.data;
     return this.oAuth2Client.getStreamingLink(deviceId, type);
   }

@@ -310,12 +310,14 @@ export default class TuyaHaClient extends OAuth2Client<TuyaHaToken> {
   }
 
   async getStreamingLink(
-    deviceId: string, // eslint-disable-line @typescript-eslint/no-unused-vars
-    type: 'RTSP' | 'HLS', // eslint-disable-line @typescript-eslint/no-unused-vars
+    deviceId: string,
+    type: 'RTSP' | 'HLS' | 'FLV' | 'RTMP',
   ): Promise<{
     url: string;
   }> {
-    throw new Error('Not implemented');
+    return this._post(`/v1.0/m/ipc/${deviceId}/stream/actions/allocate`, {
+      type: type,
+    });
   }
 
   async getDeviceStatus({ deviceId }: { deviceId: string }): Promise<TuyaStatusResponse> {
