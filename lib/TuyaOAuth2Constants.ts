@@ -76,7 +76,7 @@ export const DEVICE_CATEGORIES = {
     SMART_INDOOR_GARDEN: 'sz',
   },
   KITCHEN_APPLIANCES: {
-    SMART_kETTLE: 'bh',
+    SMART_KETTLE: 'bh',
     BREAD_MAKER: 'mb',
     COFFEE_MAKER: 'kfj',
     BOTTLE_WARMER: 'nnq',
