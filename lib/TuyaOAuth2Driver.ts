@@ -4,7 +4,7 @@ import {
   TuyaDeviceResponse,
   TuyaDeviceSpecificationResponse,
 } from '../types/TuyaApiTypes';
-import type { StandardFlowArgs, Translation } from '../types/TuyaTypes';
+import type { Locale, StandardFlowArgs, Translation } from '../types/TuyaTypes';
 import { getTuyaClientId } from './TuyaHaClientId';
 import * as TuyaOAuth2Util from './TuyaOAuth2Util';
 import { sendSetting } from './TuyaOAuth2Util';
@@ -294,6 +294,25 @@ export default class TuyaOAuth2Driver extends OAuth2Driver<TuyaHaClient> {
       .getActionCard(`${this.id}_${setting}`)
       .registerRunListener(
         async (args: StandardFlowArgs) => await sendSetting(args.device, setting, args.value, labels),
+      );
+  }
+
+  protected addEnumActionFlowHandler(homeyCapability: string, flowCard: string): void {
+    this.homey.flow
+      .getActionCard(flowCard)
+      .registerArgumentAutocompleteListener('value', (query: string, args: StandardFlowArgs) =>
+        args.device
+          .getCapabilityOptions(homeyCapability)
+          .values.map((value: { id: string; title: string | Translation }) => {
+            return {
+              id: value.id,
+              name:
+                typeof value.title === 'string' ? value.title : value.title[this.homey.i18n.getLanguage() as Locale],
+            };
+          }),
+      )
+      .registerRunListener((args: StandardFlowArgs) =>
+        args.device.triggerCapabilityListener(homeyCapability, (args.value as { id: string }).id),
       );
   }
 }

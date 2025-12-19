@@ -1,11 +1,12 @@
 import { HUMAN_SENSOR_CAPABILITIES } from '../../drivers/sensor_human/TuyaHumanSensorConstants';
-import TuyaOAuth2DeviceSensor from '../TuyaOAuth2DeviceSensor';
+import TuyaOAuth2DeviceSensor from '../sensor/TuyaOAuth2DeviceSensor';
 import { constIncludes } from '../TuyaOAuth2Util';
 import { executeMigration } from './MigrationStore';
 
 export async function performMigrations(device: TuyaOAuth2DeviceSensor): Promise<void> {
   await addBatteryPercentageMigration(device).catch(device.error);
   await addTemperAlarmMigration(device).catch(device.error);
+  await addAlarmSetting(device).catch(device.error);
 
   if (device.driver.id === 'sensor_human') {
     await redoHumanPresenceCapabilities(device).catch(device.error);
@@ -56,6 +57,29 @@ async function addTemperAlarmMigration(device: TuyaOAuth2DeviceSensor): Promise<
     await device.safeSetCapabilityValue('alarm_tamper', temperAlarm.value);
 
     device.log('Tamper alarm added');
+  });
+}
+
+async function addAlarmSetting(device: TuyaOAuth2DeviceSensor): Promise<void> {
+  await executeMigration(device, 'sensor_alarm_settings', async () => {
+    device.log('Migrating alarm settings...');
+
+    const status = await device.getStatus();
+    const foundCapabilities = [];
+
+    for (const tuyaCapability in status) {
+      if (['muffling', 'alarm_volume', 'alarm_time', 'alarm_ringtone', 'alarm_bright'].includes(tuyaCapability)) {
+        foundCapabilities.push(tuyaCapability);
+        await device.addCapability(`hidden.${tuyaCapability}`);
+      }
+    }
+
+    await device.setStoreValue('tuya_capabilities', [
+      ...device.getStoreValue('tuya_capabilities'),
+      ...foundCapabilities,
+    ]);
+
+    device.log('Finished adding alarm settings:', foundCapabilities);
   });
 }
 

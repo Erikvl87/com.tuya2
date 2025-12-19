@@ -120,6 +120,7 @@ declare module 'homey-oauth2app' {
         [key: string]: any;
       };
     };
+    class?: string;
   }
 
   export class OAuth2Token {
