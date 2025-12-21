@@ -5,11 +5,6 @@ All defined categories can be found at https://developer.tuya.com/en/docs/iot/st
 
 ## Release 1.1.0
 
-  - IR devices
-    - Maxicool/Mitshubishi split unit Airco
-    - IR controlled airco
-    - Nedis Smart Wi-Fi Remote Control
-
   - co2bj - CO2 Detector
     - Renson Sense Go
     - Smart air box
@@ -102,3 +97,12 @@ All defined categories can be found at https://developer.tuya.com/en/docs/iot/st
 
   - zwjcy - Not documented
     - Tuya Soil Sensor
+
+## Not possible
+
+It is currently impossible to support the following categories:
+
+- IR devices
+  - Maxicool/Mitshubishi split unit Airco
+  - IR controlled airco
+  - Nedis Smart Wi-Fi Remote Control
