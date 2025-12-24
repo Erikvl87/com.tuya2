@@ -18,6 +18,7 @@ We will need some information about your device. To retrieve, please:
   - Open https://my.homey.app using a laptop/desktop
   - Add your device if you didn't already
   - Open its settings and copy the specifications from the "Device Specification" setting
-  - Paste the value below
+
+⚠️ Please do not use screenshots for this value! We need it in text form to be able to process it.
 
 The device specification will look like `{ "device": ..., "specifications": ..., 'data_points': ...}`. If it shows `<not available>` you can either re-add your device, or add it as other/unknown to retrieve the correct value.
