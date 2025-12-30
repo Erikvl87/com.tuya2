@@ -28,6 +28,7 @@ import crypto from 'crypto';
 import TuyaOAuth2Error from './TuyaOAuth2Error';
 import { DeviceRegistration } from '../types/TuyaTypes';
 import mqtt from 'mqtt';
+import { parseErrorCode } from './TuyaHaError';
 
 type OAuth2SessionInformation = { id: string; title: string };
 
@@ -153,19 +154,21 @@ export default class TuyaHaClient extends OAuth2Client<TuyaHaToken> {
     const responseBodyJson = (await response.json()) as TuyaHasResponse<string>;
 
     if (!responseBodyJson.success) {
+      const code = responseBodyJson.code !== undefined ? parseInt(responseBodyJson.code) : undefined;
+
       // "sign invalid" means our tokens are expired
       // code 1010 means the refresh token is also expired?
-      if (responseBodyJson.code === '-9999999') {
+      if (code === -9999999) {
         if (didRefreshToken) {
           throw new TuyaOAuth2Error(this.homey.__('error_refreshing_token'));
         }
 
         await this.refreshToken();
         return this._executeRequest({ method, path, json, query, headers }, true);
-      } else if (responseBodyJson.code === '1010') {
+      } else if (code === 1010) {
         throw new TuyaOAuth2Error(this.homey.__('error_refreshing_token'));
       }
-      throw new Error(`[${responseBodyJson.code}] ${responseBodyJson.msg}`);
+      throw new TuyaOAuth2Error(parseErrorCode(code, this.homey.__), response.status, code);
     }
 
     if (responseBodyJson.result === undefined) {

@@ -6,6 +6,7 @@ import * as TuyaOAuth2Util from './TuyaOAuth2Util';
 import * as GeneralMigrations from './migrations/GeneralMigrations';
 import TuyaHaClient from './TuyaHaClient';
 import TuyaOAuth2Driver from './TuyaOAuth2Driver';
+import TuyaOAuth2Error from './TuyaOAuth2Error';
 
 export default class TuyaOAuth2Device extends OAuth2Device<TuyaHaClient> {
   __status: TuyaStatus;
@@ -33,6 +34,8 @@ export default class TuyaOAuth2Device extends OAuth2Device<TuyaHaClient> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(...props: any) {
     super(...props);
+
+    this.handleApiError = this.handleApiError.bind(this);
 
     this.__status = {};
     this.__sync = this.__sync.bind(this);
@@ -243,10 +246,12 @@ export default class TuyaOAuth2Device extends OAuth2Device<TuyaHaClient> {
   }
 
   async sendCommands(commands: TuyaCommand[] = []): Promise<void> {
-    await this.oAuth2Client.sendCommands({
-      commands,
-      deviceId: this.data.deviceId,
-    });
+    await this.oAuth2Client
+      .sendCommands({
+        commands,
+        deviceId: this.data.deviceId,
+      })
+      .catch(this.handleApiError);
   }
 
   async sendCommand({ code, value }: TuyaCommand): Promise<void> {
@@ -272,7 +277,7 @@ export default class TuyaOAuth2Device extends OAuth2Device<TuyaHaClient> {
 
   async setDataPoint(dataPointId: string, value: unknown): Promise<void> {
     const { deviceId } = this.data;
-    return this.oAuth2Client.setDataPoint(deviceId, dataPointId, value);
+    return this.oAuth2Client.setDataPoint(deviceId, dataPointId, value).catch(this.handleApiError);
   }
 
   async getWebRTC(): Promise<TuyaWebRTC> {
@@ -305,6 +310,18 @@ export default class TuyaOAuth2Device extends OAuth2Device<TuyaHaClient> {
 
   error(...args: unknown[]): void {
     super.error(`[tc:${this.getStoreValue('tuya_category')}]`, ...args);
+  }
+
+  handleApiError(err: TuyaOAuth2Error): void {
+    if (err.tuyaCode === 2001) {
+      this.__status = {
+        ...this.__status,
+        online: false,
+      };
+      this.setUnavailable(this.homey.__('device_offline')).catch(this.error);
+    } else {
+      throw err;
+    }
   }
 }
 
