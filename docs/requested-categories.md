@@ -58,6 +58,9 @@ All defined categories can be found at https://developer.tuya.com/en/docs/iot/st
     - Flient Smart door Lock
     - RAYKUBE K20
 
+  - kj - Air purifier
+    -  Proscenic A9
+
   - mal - Alarm Host
     - Supplement Staniot Security Panel 3
 
