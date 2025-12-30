@@ -59,8 +59,9 @@ export default class TuyaOAuth2DeviceFan extends TuyaOAuth2DeviceWithLight {
         await this.safeSetCapabilityValue(homeyCapability, value);
       }
 
-      if (constIncludes(FAN_CAPABILITIES.setting, tuyaCapability)) {
-        await this.safeSetSettingValue(tuyaCapability, value);
+      if (tuyaCapability === 'fan_direction') {
+        const directionValue = value === 'forward' ? 'forward' : 'backward';
+        await this.safeSetSettingValue('fan_direction', directionValue);
       }
 
       if (tuyaCapability === 'fan_speed') {
@@ -123,6 +124,10 @@ export default class TuyaOAuth2DeviceFan extends TuyaOAuth2DeviceWithLight {
     const tuyaSettingsEvent = TuyaOAuth2Util.filterTuyaSettings<HomeyFanSettings, TuyaFanSettings>(event, [
       'fan_direction',
     ]);
+
+    if (tuyaSettingsEvent.newSettings['fan_direction'] === 'backward') {
+      tuyaSettingsEvent.newSettings['fan_direction'] = this.store['reversed_fan_direction'];
+    }
 
     return TuyaOAuth2Util.onSettings<TuyaFanSettings>(this, tuyaSettingsEvent, this.SETTING_LABELS);
   }

@@ -43,5 +43,5 @@ export type HomeyFanSettings = {
 };
 
 export type TuyaFanSettings = {
-  fan_direction: 'forward' | 'backward';
+  fan_direction: 'forward' | 'backward' | 'reverse';
 };

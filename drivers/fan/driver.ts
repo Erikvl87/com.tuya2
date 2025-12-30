@@ -43,7 +43,7 @@ module.exports = class TuyaOAuth2DriverFan extends TuyaOAuth2DriverWithLight {
     // superclass handles light capabilities, except onoff.light
     const props = super.onTuyaPairListDeviceProperties(device, specifications, dataPoints);
 
-    props.store['_migrations'] = ['fan_tuya_capabilities'];
+    props.store['_migrations'] = ['fan_tuya_capabilities', 'reversed_fan_direction'];
 
     for (const status of device.status) {
       const tuyaCapability = status.code;
@@ -76,6 +76,8 @@ module.exports = class TuyaOAuth2DriverFan extends TuyaOAuth2DriverWithLight {
       props.capabilitiesOptions['onoff.light'] = TRANSLATIONS.capabilitiesOptions['onoff.light'];
     }
 
+    props.store['reversed_fan_direction'] = 'backward';
+
     if (!specifications || !specifications.status) {
       return props;
     }
@@ -103,6 +105,10 @@ module.exports = class TuyaOAuth2DriverFan extends TuyaOAuth2DriverWithLight {
         props.capabilitiesOptions['legacy_fan_speed'] = {
           values: legacyFanSpeedsEnum,
         };
+      }
+
+      if (tuyaCapability === 'fan_direction') {
+        props.store['reversed_fan_direction'] = (values.range as string[])[1];
       }
 
       // Temperature
