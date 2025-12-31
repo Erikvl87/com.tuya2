@@ -1,6 +1,6 @@
 # Device request
 
-You have found a device that we do not support yet. That's great! You can request support, but please provide us with the information noted below and make sure to sent one device per request.
+You have found a device that we do not support yet. That's great! You can request support, but please provide us with the information noted below and make sure to send one device per request.
 
 Also, please check whether support might have already been requested! See our [requested categories](./requested-categories.md).
 
@@ -8,11 +8,11 @@ Also, please check whether support might have already been requested! See our [r
 
 ## Device details
 
-Please provide us with some information about the device, e.g. the manufacture's website.
+Please provide us with some information about the device, e.g. the manufacturer's website.
 
 ## Device specification
 
-We will need some information about your device. To retrieve, please:
+We will need some information about your device. To retrieve this, please:
 
   - Make sure you have the latest version of the Tuya Homey App installed
   - Open https://my.homey.app using a laptop/desktop
